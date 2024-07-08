@@ -14,6 +14,10 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
+data "aws_vpc" "default" {
+  default = true
+}
+
 resource "aws_instance" "blog" {
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
@@ -21,4 +25,11 @@ resource "aws_instance" "blog" {
   tags = {
     Name = "Learning Terraform"
   }
+}
+
+resource "aws_security_group" "blog" {
+  name        = "blog"
+  description = "Allow only http and https in. Allow everything out."
+
+  vpc_id = data.aws_vpc.default.id
 }
