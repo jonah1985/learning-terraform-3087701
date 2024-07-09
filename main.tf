@@ -52,10 +52,10 @@ module "blog_sg" {
 
   vpc_id = module.blog_vpc.vpc_id
 
-  ingress_rules            = ["http-80-tcp","http-443-tcp"]
+  ingress_rules       = ["http-80-tcp","http-443-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
 
-  egress_rules            = ["all-all"]
+  egress_rules       = ["all-all"]
   egress_cidr_blocks = ["0.0.0.0/0"]
 }
 
